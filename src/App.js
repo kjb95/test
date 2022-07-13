@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+
+async function getTwo() {
+  let two = 99;
+  two = await new Promise(res => {
+    setTimeout(() => {
+      res(2);
+    }, 1000);
+  });
+  return two;
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [state, setState] = useState();
+
+  useEffect(() => {
+    setState(getTwo());
+  }, [])
+  
+  console.log('state : ', state);
+  return 'hi';
 }
 
 export default App;
